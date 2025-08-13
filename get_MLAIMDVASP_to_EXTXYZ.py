@@ -14,15 +14,10 @@ from ase.calculators.singlepoint import SinglePointCalculator
 
 # --- PATH SETUP ---
 EXTXYZ_NAME = 'mlmd_from_outcar.extxyz'
-ASE_DB_NAME = 'ASE_traj_db.db'
-
-dbpath = os.path.join(ASE_DB_NAME)
 xyzpath = os.path.join(EXTXYZ_NAME)
-
 if os.path.exists(xyzpath):
     os.remove(xyzpath)
-#if os.path.exists(dbpath):
-#    os.remove(dbpath)
+
     
 calc = Calculation.from_file("vaspout.h5")
 print(dir(calc.energy[:]))
@@ -56,8 +51,8 @@ def MLMD_AIMD_to_EXTXYZ(xyzpath, calc, buffer_size=100):
         # internal stress
         stress_eVA3 = -1 * stress_ASE / 1602.1766208  # from kbar to eV/Angstrom^3
                     
-        atoms.calc = SinglePointCalculator(atoms, energy=energy, forces=forces, stress=stress)
-        atoms.info = {"System": f"ML_{name}"}
+        atoms.calc = SinglePointCalculator(atoms, energy=energy, forces=forces, stress=stress_eVA3)
+        atoms.info = {"System": f"{name}"}
         buffer.append(atoms)
 
         if len(buffer) >= buffer_size:
