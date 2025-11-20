@@ -34,3 +34,6 @@ This repository provides a reproducible pipeline for:
 - Battery Application: Workflow for screening and predicting promising battery materials using Matbench Discovery metrics.
 
 ## Project Structure
+
+<img width="4301" height="3540" alt="smooth_PES_umap" src="https://github.com/user-attachments/assets/9c96ed7e-b959-4da3-9360-d0d3ffd3be3e" />
+
